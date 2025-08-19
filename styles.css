@@ -45,3 +45,218 @@
         background-position: -100% 0;
     }
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: var(--primary);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+header.hidden {
+    display: none;
+}
+
+header h1 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 0;
+    background: var(--title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--subtitle);
+}
+
+.actions {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: var(--primary);
+    bottom: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 55px;
+}
+
+form input {
+    all: unset;
+    color: var(--text);
+    background-color: var(--secondary);
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    border-radius: 50px;
+    padding-right: 65px;
+    transition: 0.3s ease background-color;
+}
+
+form input:focus {
+    background-color: var(--tertiary);
+}
+
+#send-message {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    color: var(--text);
+    cursor: pointer;
+    transform: scale(0);
+    transition: 0.1s ease transform;
+}
+
+form input ~ #send-message {
+    transform: scale(1);
+}
+
+#mode,
+#delete {
+    background-color: var(--secondary);
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.3s ease background-color;
+}
+
+#mode:hover,
+#delete:hover {
+    background-color: var(--tertiary);
+}
+
+.chat-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0 20px;
+    animation: fadeIn 0.4s ease;
+}
+
+.message.loading {
+    animation: fadeIn 0.4s ease 0.5s both;
+}
+
+.message .message-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.message .message-content img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.message .message-content span {
+    color: var(--text);
+}
+
+.message .message-actions {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.3s ease all;
+}
+
+.message .message-actions.hidden {
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.message .volume-up,
+.message .copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 22px;
+    transition: 0.3s ease all;
+}
+
+.message .volume-up:hover,
+.message .copy:hover {
+    background-color: var(--tertiary);
+}
+
+.message .loading-indicator {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.message .loading-indicator .loading-bar {
+    height: 11px;
+    width: 100%;
+    border-radius: 10px;
+    background: var(--loading);
+    background-size: 200% 100%;
+    animation: loading 3s linear infinite;
+}
+
+.message .loading-indicator .loading-bar:last-child {
+    width: 70%;
+}
